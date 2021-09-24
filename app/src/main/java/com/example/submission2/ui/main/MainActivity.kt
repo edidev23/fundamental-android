@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
-    private val detailViewModel by viewModels<DetailUserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,9 +63,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedUser(user: User) {
-        detailViewModel.findFollowerUsers(user.login)
-        detailViewModel.findFollowingUsers(user.login)
-
         val detailUserIntent = Intent(this@MainActivity, DetailUserActivity::class.java)
         detailUserIntent.putExtra(DetailUserActivity.EXTRA_USER, user)
         startActivity(detailUserIntent)

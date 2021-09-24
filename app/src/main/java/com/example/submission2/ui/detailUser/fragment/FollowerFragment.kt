@@ -25,12 +25,6 @@ class FollowerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        detailViewModel.listFollower.observe(viewLifecycleOwner, { user -> setFollowerUser(user)})
-        detailViewModel.isLoading.observe(viewLifecycleOwner, {
-            showLoading(it)
-        })
-
         binding = FragmentFollowerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,7 +32,11 @@ class FollowerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        detailViewModel.listFollower.observe(viewLifecycleOwner, { user -> setFollowerUser(user)})
+        detailViewModel.findFollowerUsers("edikode")
+
+        detailViewModel.listFollower.observe(viewLifecycleOwner, {
+                user -> setFollowerUser(user)
+        })
         detailViewModel.isLoading.observe(viewLifecycleOwner, {
             showLoading(it)
         })
@@ -46,7 +44,6 @@ class FollowerFragment : Fragment() {
 
     private fun setFollowerUser(user: ArrayList<User>) {
 
-        Log.e("follower", user.toString())
         binding.rvUsers.layoutManager = LinearLayoutManager(context)
         val listUser = UserGithubAdapter(user)
         binding.rvUsers.adapter = listUser

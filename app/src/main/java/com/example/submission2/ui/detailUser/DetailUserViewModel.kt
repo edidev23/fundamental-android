@@ -27,8 +27,7 @@ class DetailUserViewModel : ViewModel() {
     }
 
     init {
-        findFollowerUsers("edikode")
-        findFollowingUsers("edikode")
+
     }
 
     fun getDetailUsers(username: String) {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2.adapter.UserGithubAdapter
@@ -16,19 +17,12 @@ import com.example.submission2.ui.detailUser.DetailUserViewModel
 class FollowingFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowingBinding
-    private lateinit var viewModel: DetailUserViewModel
+    private val detailViewModel by viewModels<DetailUserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        viewModel = ViewModelProvider(this).get(DetailUserViewModel::class.java)
-        viewModel.listFollowing.observe(viewLifecycleOwner, { user -> setFollowingUser(user)})
-        viewModel.isLoading.observe(viewLifecycleOwner, {
-            showLoading(it)
-        })
-
         binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,9 +30,11 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(DetailUserViewModel::class.java)
-        viewModel.listFollowing.observe(viewLifecycleOwner, { user -> setFollowingUser(user)})
-        viewModel.isLoading.observe(viewLifecycleOwner, {
+        detailViewModel.findFollowingUsers("edikode")
+        detailViewModel.listFollowing.observe(viewLifecycleOwner, {
+                user -> setFollowingUser(user)
+        })
+        detailViewModel.isLoading.observe(viewLifecycleOwner, {
             showLoading(it)
         })
     }

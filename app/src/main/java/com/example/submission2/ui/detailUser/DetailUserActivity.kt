@@ -2,7 +2,6 @@ package com.example.submission2.ui.detailUser
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
@@ -34,7 +33,6 @@ class DetailUserActivity : AppCompatActivity() {
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
 
-        Log.e("username", user.login)
         detailViewModel.getDetailUsers(user.login)
 
         detailViewModel.detailUser.observe(this, { user -> setDetailUser(user)})
@@ -42,7 +40,7 @@ class DetailUserActivity : AppCompatActivity() {
             showLoading(it)
         })
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, user.login)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
 
@@ -72,8 +70,6 @@ class DetailUserActivity : AppCompatActivity() {
             .apply(RequestOptions().override(55, 55))
             .into(binding.imgPhoto)
 
-        detailViewModel.findFollowerUsers(user.login)
-        detailViewModel.findFollowingUsers(user.login)
     }
 
     override fun onSupportNavigateUp(): Boolean {
