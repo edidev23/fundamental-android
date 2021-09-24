@@ -25,6 +25,12 @@ class FollowerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        detailViewModel.listFollower.observe(viewLifecycleOwner, { user -> setFollowerUser(user)})
+        detailViewModel.isLoading.observe(viewLifecycleOwner, {
+            showLoading(it)
+        })
+
         binding = FragmentFollowerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -60,7 +66,4 @@ class FollowerFragment : Fragment() {
         }
     }
 
-    companion object {
-        private val USER = "user"
-    }
 }

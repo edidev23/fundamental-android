@@ -35,7 +35,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="26dp"
         android:text="@string/location"
-        app:drawableStartCompat="@drawable/pin" />
+        app:drawableStartCompat="@drawable/ic_baseline_bubble_chart_24" />
 
     <TextView
         android:id="@+id/txt_urlhtml"
@@ -47,5 +47,5 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="10dp"
         android:text="@string/location"
-        app:drawableStartCompat="@drawable/building" />
+        app:drawableStartCompat="@drawable/ic_baseline_computer_24" />
 </RelativeLayout>

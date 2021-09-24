@@ -22,6 +22,13 @@ class FollowingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        viewModel = ViewModelProvider(this).get(DetailUserViewModel::class.java)
+        viewModel.listFollowing.observe(viewLifecycleOwner, { user -> setFollowingUser(user)})
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            showLoading(it)
+        })
+
         binding = FragmentFollowingBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -3,18 +3,16 @@ package com.example.submission2.ui.detailUser
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.R
-import com.example.submission2.adapter.UserGithubAdapter
 import com.example.submission2.databinding.ActivityDetailUserBinding
 import com.example.submission2.model.User
+import com.example.submission2.model.UserDetailResponse
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -35,15 +33,14 @@ class DetailUserActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
-        binding.txtName.text = user.login
-        binding.txtUsername.text = getString(R.string.username_template, user.score)
 
-        detailViewModel.listFollower.observe(this, { user -> setFollowerUser(user)})
+        Log.e("username", user.login)
+        detailViewModel.getDetailUsers(user.login)
 
-        Glide.with(this)
-            .load(user.avatar_url)
-            .apply(RequestOptions().override(55, 55))
-            .into(binding.imgPhoto)
+        detailViewModel.detailUser.observe(this, { user -> setDetailUser(user)})
+        detailViewModel.isLoading.observe(this, {
+            showLoading(it)
+        })
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = findViewById(R.id.view_pager)
@@ -57,8 +54,26 @@ class DetailUserActivity : AppCompatActivity() {
 
     }
 
-    private fun setFollowerUser(user: ArrayList<User>) {
-        Log.e("follower", user.toString())
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun setDetailUser(user: UserDetailResponse) {
+
+        binding.txtName.text = user.name
+        binding.txtUsername.text = getString(R.string.username_template, user.login)
+
+        Glide.with(this)
+            .load(user.avatarUrl)
+            .apply(RequestOptions().override(55, 55))
+            .into(binding.imgPhoto)
+
+        detailViewModel.findFollowerUsers(user.login)
+        detailViewModel.findFollowingUsers(user.login)
     }
 
     override fun onSupportNavigateUp(): Boolean {

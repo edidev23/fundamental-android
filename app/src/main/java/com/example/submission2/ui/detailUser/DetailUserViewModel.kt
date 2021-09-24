@@ -6,11 +6,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.submission2.api.ApiConfig
 import com.example.submission2.model.User
+import com.example.submission2.model.UserDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailUserViewModel : ViewModel() {
+    private val _detailUser = MutableLiveData<UserDetailResponse>()
+    val detailUser: LiveData<UserDetailResponse> = _detailUser
+
     private val _listFollower = MutableLiveData<ArrayList<User>>()
     val listFollower: LiveData<ArrayList<User>> = _listFollower
     private val _listFollowing = MutableLiveData<ArrayList<User>>()
@@ -23,8 +27,30 @@ class DetailUserViewModel : ViewModel() {
     }
 
     init {
-//        findFollowerUsers("ana")
-//        findFollowingUsers("ana")
+        findFollowerUsers("edikode")
+        findFollowingUsers("edikode")
+    }
+
+    fun getDetailUsers(username: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getDetailUser(username)
+        client.enqueue(object : Callback<UserDetailResponse> {
+            override fun onResponse(
+                call: Call<UserDetailResponse>,
+                response: Response<UserDetailResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _detailUser.value = response.body()
+                } else {
+                    Log.e(TAG, "onFailure not success: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<UserDetailResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
     }
 
     fun findFollowerUsers(username: String) {

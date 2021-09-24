@@ -22,12 +22,12 @@ class MainViewModel : ViewModel() {
     }
 
     init {
-        findUsers()
+//        findUsers("edi")
     }
 
-    private fun findUsers() {
+     fun findUsers(query: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getSearchUsers("a")
+        val client = ApiConfig.getApiService().getSearchUsers(query)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(
                 call: Call<UserResponse>,
