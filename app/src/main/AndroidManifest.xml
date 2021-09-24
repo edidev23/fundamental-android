@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Submission2">
         <activity
-            android:name=".DetailUserActivity"
+            android:name=".ui.detailUser.DetailUserActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

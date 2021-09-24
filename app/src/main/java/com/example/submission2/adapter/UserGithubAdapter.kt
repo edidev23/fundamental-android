@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.databinding.ItemUserBinding
-import com.example.submission2.model.UserGithub
+import com.example.submission2.model.User
 
-class UserGithubAdapter(private val user: ArrayList<UserGithub>) : RecyclerView.Adapter<UserGithubAdapter.ListViewHolder>() {
+class UserGithubAdapter(private val user: ArrayList<User>) : RecyclerView.Adapter<UserGithubAdapter.ListViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
@@ -28,15 +28,15 @@ class UserGithubAdapter(private val user: ArrayList<UserGithub>) : RecyclerView.
     }
 
     inner class ListViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: UserGithub) {
+        fun bind(user: User) {
             with(binding){
 
-                txtName.text = user.name
-                txtLocation.text = user.location
-                txtCompany.text = user.company
+                txtName.text = user.login
+                txtScore.text = user.score
+                txtUrlhtml.text = user.html_url
 
                 Glide.with(itemView.context)
-                    .load(user.photo)
+                    .load(user.avatar_url)
                     .apply(RequestOptions().override(55, 55))
                     .into(imgPhoto)
 
@@ -46,7 +46,7 @@ class UserGithubAdapter(private val user: ArrayList<UserGithub>) : RecyclerView.
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: UserGithub)
+        fun onItemClicked(data: User)
     }
 
 }
