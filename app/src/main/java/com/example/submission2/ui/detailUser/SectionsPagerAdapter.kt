@@ -7,9 +7,7 @@ import com.example.submission2.ui.detailUser.fragment.FollowerFragment
 import com.example.submission2.ui.detailUser.fragment.FollowingFragment
 import android.os.Bundle
 
-class SectionsPagerAdapter(activity: AppCompatActivity, username: String) : FragmentStateAdapter(activity) {
-
-    private val username: String = username;
+class SectionsPagerAdapter(activity: AppCompatActivity, private val username: String) : FragmentStateAdapter(activity) {
 
     override fun getItemCount(): Int {
         return 2

@@ -26,10 +26,6 @@ class DetailUserViewModel : ViewModel() {
         private const val TAG = "DetailUserViewModel"
     }
 
-    init {
-
-    }
-
     fun getDetailUsers(username: String) {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getDetailUser(username)

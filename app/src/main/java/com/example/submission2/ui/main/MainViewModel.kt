@@ -17,12 +17,16 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isError = MutableLiveData<Boolean>()
+    val isError: LiveData<Boolean> = _isError
+
     companion object{
         private const val TAG = "MainViewModel"
+        const val DEFAULT_USERNAME = "edisiswanto"
     }
 
     init {
-//        findUsers("edi")
+        findUsers(DEFAULT_USERNAME)
     }
 
      fun findUsers(query: String) {
@@ -37,6 +41,7 @@ class MainViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _listUser.value = response.body()
                 } else {
+                    _isError.value = true
                     Log.e(TAG, "onFailure not success: ${response.message()}")
                 }
             }

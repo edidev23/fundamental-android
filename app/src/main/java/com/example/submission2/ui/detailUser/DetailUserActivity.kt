@@ -35,7 +35,7 @@ class DetailUserActivity : AppCompatActivity() {
 
         detailViewModel.getDetailUsers(user.login)
 
-        detailViewModel.detailUser.observe(this, { user -> setDetailUser(user)})
+        detailViewModel.detailUser.observe(this, { res -> setDetailUser(res)})
         detailViewModel.isLoading.observe(this, {
             showLoading(it)
         })

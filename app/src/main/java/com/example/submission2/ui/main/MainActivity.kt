@@ -18,7 +18,7 @@ import com.example.submission2.adapter.UserGithubAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.User
 import com.example.submission2.model.UserResponse
-import com.example.submission2.ui.detailUser.DetailUserViewModel
+import com.example.submission2.ui.main.MainViewModel.Companion.DEFAULT_USERNAME
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,11 +32,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mainViewModel.findUsers("edisiswanto")
-
         mainViewModel.listUser.observe(this, { user -> setUserGithub(user)})
         mainViewModel.isLoading.observe(this, {
             showLoading(it)
+        })
+
+        mainViewModel.isError.observe(this, {
+            Toast.makeText(this, "Gagal Memuat data !", Toast.LENGTH_LONG).show()
         })
         binding.rvUsers.setHasFixedSize(true)
 
@@ -100,14 +102,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
 
             R.id.menu1 -> {
-                mainViewModel.findUsers("edisiswanto")
+                mainViewModel.findUsers(DEFAULT_USERNAME)
                 Toast.makeText(this@MainActivity, "Reload data berhasil", Toast.LENGTH_SHORT).show()
-                return true
+                true
             }
-            else -> return true
+            else -> true
         }
     }
 
