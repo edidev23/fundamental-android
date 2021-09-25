@@ -50,6 +50,13 @@ class FollowerFragment : Fragment() {
 
     private fun setFollowerUser(user: ArrayList<User>) {
 
+        if(user.isEmpty()) {
+            binding.resultKosong.visibility = View.VISIBLE
+            Toast.makeText(context, "Data tidak ditemukan !", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.resultKosong.visibility = View.GONE
+        }
+
         binding.rvUsers.layoutManager = LinearLayoutManager(context)
         val listUser = UserGithubAdapter(user)
         binding.rvUsers.adapter = listUser
