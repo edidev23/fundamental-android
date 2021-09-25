@@ -103,7 +103,8 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
 
             R.id.menu1 -> {
-                Toast.makeText(this@MainActivity, "menu 1", Toast.LENGTH_SHORT).show()
+                mainViewModel.findUsers("edisiswanto")
+                Toast.makeText(this@MainActivity, "Reload data berhasil", Toast.LENGTH_SHORT).show()
                 return true
             }
             else -> return true
