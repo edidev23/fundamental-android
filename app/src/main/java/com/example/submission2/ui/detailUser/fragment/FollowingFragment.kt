@@ -7,17 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2.adapter.UserGithubAdapter
 import com.example.submission2.databinding.FragmentFollowingBinding
 import com.example.submission2.model.User
 import com.example.submission2.ui.detailUser.DetailUserViewModel
+import com.example.submission2.ui.detailUser.SectionsPagerAdapter.Companion.USERNAME
 
 class FollowingFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowingBinding
     private val detailViewModel by viewModels<DetailUserViewModel>()
+
+    private var username: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            username = it.getString(USERNAME)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +39,7 @@ class FollowingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        detailViewModel.findFollowingUsers("edikode")
+        detailViewModel.findFollowingUsers(username.toString())
         detailViewModel.listFollowing.observe(viewLifecycleOwner, {
                 user -> setFollowingUser(user)
         })

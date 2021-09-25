@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.submission2.ui.detailUser.fragment.FollowerFragment
 import com.example.submission2.ui.detailUser.fragment.FollowingFragment
+import android.os.Bundle
 
 class SectionsPagerAdapter(activity: AppCompatActivity, username: String) : FragmentStateAdapter(activity) {
+
+    private val username: String = username;
+
     override fun getItemCount(): Int {
         return 2
     }
@@ -14,10 +18,26 @@ class SectionsPagerAdapter(activity: AppCompatActivity, username: String) : Frag
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
-            0 -> fragment = FollowerFragment()
-            1 -> fragment = FollowingFragment()
+            0 -> {
+                fragment = FollowerFragment()
+
+                val args = Bundle()
+                args.putString(USERNAME, username)
+                fragment.setArguments(args)
+            }
+            1 -> {
+                fragment = FollowingFragment()
+
+                val args = Bundle()
+                args.putString(USERNAME, username)
+                fragment.setArguments(args)
+            }
         }
         return fragment as Fragment
+    }
+
+    companion object {
+        const val USERNAME = "username"
     }
 
 }
