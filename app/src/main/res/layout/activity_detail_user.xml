@@ -6,7 +6,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/blue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -43,7 +42,6 @@
             android:layout_marginTop="16dp"
             android:text="@string/name_user"
             android:textSize="24sp"
-            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@+id/img_photo"
             tools:layout_editor_absoluteX="16dp" />
 
@@ -57,6 +55,83 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_name"
             tools:layout_editor_absoluteX="16dp" />
 
+        <TableLayout
+            android:id="@+id/table"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_username"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/location"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/location"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/company"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/company"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/repository"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/txt_repository"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/repository"
+                    android:textSize="14sp" />
+            </TableRow>
+        </TableLayout>
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:background="@color/white"
@@ -64,7 +139,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/txt_username"
+            app:layout_constraintTop_toBottomOf="@+id/table"
             tools:layout_editor_absoluteX="28dp">
 
             <com.google.android.material.tabs.TabLayout

@@ -64,6 +64,9 @@ class DetailUserActivity : AppCompatActivity() {
 
         binding.txtName.text = user.name
         binding.txtUsername.text = getString(R.string.username_template, user.login)
+        binding.txtLocation.text = user.location
+        binding.txtCompany.text = user.company
+        binding.txtRepository.text = user.reposUrl
 
         Glide.with(this)
             .load(user.avatarUrl)
