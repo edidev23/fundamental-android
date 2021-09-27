@@ -33,10 +33,10 @@ class UserGithubAdapter(private val user: ArrayList<User>) : RecyclerView.Adapte
 
                 txtName.text = user.login
                 txtScore.text = user.score
-                txtUrlhtml.text = user.html_url
+                txtUrlhtml.text = user.htmlUrl
 
                 Glide.with(itemView.context)
-                    .load(user.avatar_url)
+                    .load(user.avatarUrl)
                     .apply(RequestOptions().override(55, 55))
                     .into(imgPhoto)
 

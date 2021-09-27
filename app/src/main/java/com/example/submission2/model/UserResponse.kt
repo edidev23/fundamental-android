@@ -12,9 +12,9 @@ data class User(
     val login: String,
     val id: Int,
     val url: String,
-    val followers_url: String,
-    val following_url:String,
-    val avatar_url: String,
-    val html_url: String,
+    val followersUrl: String,
+    val followingUrl:String,
+    val avatarUrl: String,
+    val htmlUrl: String,
     val score: String
 ): Parcelable

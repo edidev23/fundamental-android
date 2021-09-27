@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiUsers {
+
     @GET("search/users")
     @Headers("Authorization: token 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")
     fun getSearchUsers(
