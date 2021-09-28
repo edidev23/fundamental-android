@@ -19,4 +19,6 @@
     <string name="search">Masukkan Username</string>
     <string name="search_hint">Masukkan Nama</string>
     <string name="no_data">Data tidak ditemukan</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="favorite">Favorite User</string>
 </resources>

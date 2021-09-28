@@ -7,9 +7,17 @@
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always" />
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/favorite"
+        app:showAsAction="collapseActionView|always" />
     <group android:menuCategory="container">
         <item
             android:id="@+id/menu1"
             android:title="@string/menu" />
+        <item
+            android:id="@+id/menu2"
+            android:title="@string/dark_mode" />
     </group>
 </menu>

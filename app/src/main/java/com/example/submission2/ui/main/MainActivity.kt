@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,6 +19,7 @@ import com.example.submission2.adapter.UserGithubAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.User
 import com.example.submission2.model.UserResponse
+import com.example.submission2.ui.favorite.FavoriteActivity
 import com.example.submission2.ui.main.MainViewModel.Companion.DEFAULT_USERNAME
 
 class MainActivity : AppCompatActivity() {
@@ -102,11 +104,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
+         return when (item.itemId) {
 
             R.id.menu1 -> {
                 mainViewModel.findUsers(DEFAULT_USERNAME)
                 Toast.makeText(this@MainActivity, "Reload data berhasil", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.menu2 -> {
+                val favoriteIntent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(favoriteIntent)
                 true
             }
             else -> true
