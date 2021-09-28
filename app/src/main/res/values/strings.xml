@@ -21,4 +21,12 @@
     <string name="no_data">Data tidak ditemukan</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="favorite">Favorite User</string>
+    <string name="added">User Masuk daftar Favorite</string>
+    <string name="cancel">Batal</string>
+    <string name="message_cancel">Apakah anda ingin membatalkan perubahan ini?</string>
+    <string name="message_delete">Apakah anda yakin ingin hapus user ini dr daftar favorite?</string>
+    <string name="delete">Hapus</string>
+    <string name="yes">Ya</string>
+    <string name="deleted">User berhasil dihapus dari daftar favorite</string>
+    <string name="no">Tidak</string>
 </resources>

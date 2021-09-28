@@ -1,17 +1,24 @@
 package com.example.submission2.ui.detailUser
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.R
+import com.example.submission2.database.Favorite
 import com.example.submission2.databinding.ActivityDetailUserBinding
+import com.example.submission2.helper.DateHelper
+import com.example.submission2.helper.ViewModelFactory
 import com.example.submission2.model.User
 import com.example.submission2.model.UserDetailResponse
+import com.example.submission2.ui.favorite.FavoriteViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,6 +26,8 @@ class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
     private val detailViewModel by viewModels<DetailUserViewModel>()
+
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +41,8 @@ class DetailUserActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         val user = intent.getParcelableExtra<User>(EXTRA_USER) as User
+
+        favoriteViewModel = obtainViewModel(this@DetailUserActivity)
 
         detailViewModel.getDetailUsers(user.login)
 
@@ -50,6 +61,30 @@ class DetailUserActivity : AppCompatActivity() {
         }.attach()
         supportActionBar?.elevation = 0f
 
+        binding?.fabAdd?.setOnClickListener { view ->
+            if (view.id == R.id.fab_add) {
+
+                val favorite = Favorite()
+                favorite.login = user.login
+                favorite.avatarUrl = user.avatarUrl
+                favorite.score = user.score
+                favorite.url = user.url
+                favorite.idAPI = user.id
+                favorite.date = DateHelper.getCurrentDate()
+
+                favoriteViewModel.insert(favorite)
+                showToast(getString(R.string.added))
+            }
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): FavoriteViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory).get(FavoriteViewModel::class.java)
     }
 
     private fun showLoading(isLoading: Boolean) {

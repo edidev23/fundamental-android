@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2.ui.detailUser.DetailUserActivity
 import com.example.submission2.R
 import com.example.submission2.adapter.UserGithubAdapter
+import com.example.submission2.database.Favorite
 import com.example.submission2.databinding.ActivityMainBinding
+import com.example.submission2.helper.DateHelper
 import com.example.submission2.model.User
 import com.example.submission2.model.UserResponse
 import com.example.submission2.ui.favorite.FavoriteActivity
