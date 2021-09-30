@@ -29,4 +29,5 @@
     <string name="yes">Ya</string>
     <string name="deleted">User berhasil dihapus dari daftar favorite</string>
     <string name="no">Tidak</string>
+    <string name="normal_mode">Light Mode</string>
 </resources>
