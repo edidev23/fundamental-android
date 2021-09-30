@@ -12,7 +12,7 @@ data class Favorite(
     var id: Int = 0,
 
     @ColumnInfo(name = "id_api")
-    var idAPI: Int = 0,
+    var idAPI: Int? = 0,
 
     @ColumnInfo(name = "login")
     var login: String? = null,

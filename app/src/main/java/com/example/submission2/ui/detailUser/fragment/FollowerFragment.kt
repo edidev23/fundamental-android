@@ -52,7 +52,6 @@ class FollowerFragment : Fragment() {
 
         if(user.isEmpty()) {
             binding.resultKosong.visibility = View.VISIBLE
-            Toast.makeText(context, "Data tidak ditemukan !", Toast.LENGTH_SHORT).show()
         } else {
             binding.resultKosong.visibility = View.GONE
         }

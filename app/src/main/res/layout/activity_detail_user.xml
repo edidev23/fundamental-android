@@ -169,6 +169,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:foregroundGravity="bottom"
+            app:backgroundTint="@color/white"
+            app:tint="@color/blue"
             app:fabSize="normal"
             app:layout_anchor="@id/view_pager"
             app:layout_anchorGravity="top|end"

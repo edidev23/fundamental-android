@@ -18,6 +18,8 @@ class FavoriteRepository(application: Application) {
 
     fun getAllFavorite(): LiveData<List<Favorite>> = mDao.getAllFavorite()
 
+    fun getDetail(username: String): LiveData<Favorite?> = mDao.getDetail(username)
+
     fun insert(favorite: Favorite) {
         executorService.execute { mDao.insert(favorite) }
     }
