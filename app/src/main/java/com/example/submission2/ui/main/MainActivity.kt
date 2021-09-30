@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        mainViewModel.listUser.observe(this, { user -> setUserGithub(user)})
+        mainViewModel.listUser.observe(this, { user -> setUserGithub(user) })
         mainViewModel.isLoading.observe(this, {
             showLoading(it)
         })
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUserGithub(user: UserResponse) {
 
-        if(user.items.isEmpty()) {
+        if (user.items.isEmpty()) {
             binding.resultKosong.visibility = View.VISIBLE
             Toast.makeText(this, "Data tidak ditemukan !", Toast.LENGTH_SHORT).show()
         } else {
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         val listUser = UserGithubAdapter(user.items)
         binding.rvUsers.adapter = listUser
 
-        listUser.setOnItemClickCallback(object : UserGithubAdapter.OnItemClickCallback{
+        listUser.setOnItemClickCallback(object : UserGithubAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
                 showSelectedUser(data)
             }
@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-         return when (item.itemId) {
+        return when (item.itemId) {
 
             R.id.menu1 -> {
                 mainViewModel.findUsers(DEFAULT_USERNAME)
@@ -118,6 +118,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(favoriteIntent)
                 true
             }
+            R.id.favorite -> {
+                val favoriteIntent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(favoriteIntent)
+                true
+            }
+
             else -> true
         }
     }
