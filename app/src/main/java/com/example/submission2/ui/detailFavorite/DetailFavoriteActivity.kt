@@ -1,22 +1,19 @@
 package com.example.submission2.ui.detailFavorite
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.R
 import com.example.submission2.database.Favorite
 import com.example.submission2.databinding.ActivityDetailFavoriteBinding
-import com.example.submission2.databinding.ActivityFavoriteBinding
 import com.example.submission2.helper.ViewModelFactory
 import com.example.submission2.model.User
-import com.example.submission2.ui.detailUser.DetailUserActivity
 import com.example.submission2.ui.detailUser.DetailUserActivity.Companion.EXTRA_USER
-import com.example.submission2.ui.favorite.FavoriteActivity
 import com.example.submission2.ui.favorite.FavoriteViewModel
 
 class DetailFavoriteActivity : AppCompatActivity() {
@@ -39,7 +36,7 @@ class DetailFavoriteActivity : AppCompatActivity() {
 
         favoriteViewModel = obtainViewModel(this@DetailFavoriteActivity)
 
-        val user = intent.getParcelableExtra<User>(EXTRA_USER) as Favorite;
+        val user = intent.getParcelableExtra<User>(EXTRA_USER) as Favorite
         binding?.txtName?.text = user.login
         binding?.txtUsername?.text = getString(R.string.username_template, user.login)
         binding?.txtScore?.text = user.score

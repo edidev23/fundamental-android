@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiConfig {
     companion object {
-        lateinit var client: OkHttpClient;
+        private lateinit var client: OkHttpClient
 
         fun getApiService(): ApiUsers {
 

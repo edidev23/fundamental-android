@@ -28,7 +28,7 @@ class FavoriteActivity : AppCompatActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
 
         favoriteViewModel = obtainViewModel(this@FavoriteActivity)
 
@@ -39,9 +39,9 @@ class FavoriteActivity : AppCompatActivity() {
         })
         adapter = FavoriteAdapter()
 
-        binding?.rvUsers?.layoutManager = LinearLayoutManager(this)
-        binding?.rvUsers?.setHasFixedSize(true)
-        binding?.rvUsers?.adapter = adapter
+        binding.rvUsers.layoutManager = LinearLayoutManager(this)
+        binding.rvUsers.setHasFixedSize(true)
+        binding.rvUsers.adapter = adapter
 
         adapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallback{
             override fun onItemClicked(data: Favorite) {

@@ -73,7 +73,7 @@ class DetailUserActivity : AppCompatActivity() {
             binding.fabAdd.imageTintList = ContextCompat.getColorStateList(this, R.color.red)
         }
 
-        binding?.fabAdd?.setOnClickListener { view ->
+        binding.fabAdd.setOnClickListener { view ->
             if (view.id == R.id.fab_add) {
 
                 if (favorite == null) {

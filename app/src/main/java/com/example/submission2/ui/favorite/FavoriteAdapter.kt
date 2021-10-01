@@ -13,7 +13,7 @@ import com.example.submission2.databinding.ItemUserBinding
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
     private val listFavorite = ArrayList<Favorite>()
-    private var onItemClickCallback: FavoriteAdapter.OnItemClickCallback? = null
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     interface OnItemClickCallback {
         fun onItemClicked(data: Favorite)
@@ -58,7 +58,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
         }
     }
 
-    fun setOnItemClickCallback(onItemClickCallback: FavoriteAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
