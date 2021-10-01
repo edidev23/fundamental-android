@@ -3,7 +3,6 @@ package com.example.submission2.helper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.submission2.ui.detailUser.DetailUserViewModel
 import com.example.submission2.ui.favorite.FavoriteViewModel
 
 class ViewModelFactory private constructor(private val mApplication: Application) : ViewModelProvider.NewInstanceFactory() {

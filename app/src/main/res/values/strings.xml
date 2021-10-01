@@ -8,9 +8,6 @@
     <string name="location">Location</string>
     <string name="company">Company</string>
     <string name="repository">Repository</string>
-    <string name="follower">follower</string>
-    <string name="following">Following</string>
-    <string name="object_received">Text</string>
 
     <string name="tab_text_1">Follower</string>
     <string name="tab_text_2">Following</string>
@@ -30,4 +27,7 @@
     <string name="deleted">User berhasil dihapus dari daftar favorite</string>
     <string name="no">Tidak</string>
     <string name="normal_mode">Light Mode</string>
+    <string name="score">Rating</string>
+    <string name="url">url</string>
+    <string name="date">Created At</string>
 </resources>

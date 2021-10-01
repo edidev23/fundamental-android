@@ -1,7 +1,5 @@
 package com.example.submission2.ui.detailUser
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,7 +19,7 @@ import com.example.submission2.helper.DateHelper
 import com.example.submission2.helper.ViewModelFactory
 import com.example.submission2.model.User
 import com.example.submission2.model.UserDetailResponse
-import com.example.submission2.ui.favorite.FavoriteActivity
+import com.example.submission2.ui.detailFavorite.DetailFavoriteActivity.Companion.ALERT_DIALOG_CLOSE
 import com.example.submission2.ui.favorite.FavoriteViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -101,7 +99,7 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun showAlertDialog(type: Int, user: Favorite) {
-        val isDialogClose = type == FavoriteActivity.ALERT_DIALOG_CLOSE
+        val isDialogClose = type == ALERT_DIALOG_CLOSE
         val dialogTitle: String
         val dialogMessage: String
         if (isDialogClose) {

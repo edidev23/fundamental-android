@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.submission2.adapter.UserGithubAdapter
 import com.example.submission2.database.Favorite
 import com.example.submission2.helper.FavoriteDiffCallback
 import com.example.submission2.databinding.ItemUserBinding

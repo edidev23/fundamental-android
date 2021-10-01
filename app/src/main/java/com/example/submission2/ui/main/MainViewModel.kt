@@ -20,11 +20,6 @@ class MainViewModel : ViewModel() {
     private val _isError = MutableLiveData<Boolean>()
     val isError: LiveData<Boolean> = _isError
 
-    companion object{
-        private const val TAG = "MainViewModel"
-        const val DEFAULT_USERNAME = "edisiswanto"
-    }
-
     init {
         findUsers(DEFAULT_USERNAME)
     }
@@ -51,6 +46,11 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
         })
+    }
+
+    companion object{
+        private const val TAG = "MainViewModel"
+        const val DEFAULT_USERNAME = "edisiswanto"
     }
 
 }
