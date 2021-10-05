@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         })
         mainViewModel.isError.observe(this, {
-            Toast.makeText(this, "Gagal Memuat data !", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.gagal_muat), Toast.LENGTH_LONG).show()
         })
         binding.rvUsers.setHasFixedSize(true)
 

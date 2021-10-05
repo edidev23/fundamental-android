@@ -30,4 +30,5 @@
     <string name="score">Rating</string>
     <string name="url">url</string>
     <string name="date">Created At</string>
+    <string name="gagal_muat">Gagal Memuat data !</string>
 </resources>

@@ -9,32 +9,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiConfig {
     companion object {
         private lateinit var client: OkHttpClient
-        private var token = BuildConfig.KEY
+        private val token = BuildConfig.KEY
+        private val apiURL = BuildConfig.API_URL
 
         fun getApiService(): ApiUsers {
-            if (BuildConfig.DEBUG) {
-                val loggingInterceptor =
-                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-                client = OkHttpClient.Builder()
-                    .addInterceptor { chain ->
-                        val request = chain.request().newBuilder()
-                            .addHeader("Authorization", "token $token").build()
-                        chain.proceed(request)
-                    }
-                    .addInterceptor(loggingInterceptor)
-                    .build()
+            val loggingInterceptor = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
-                client = OkHttpClient.Builder()
-                    .addInterceptor { chain ->
-                        val request = chain.request().newBuilder()
-                            .addHeader("Authorization", "token $token").build()
-                        chain.proceed(request)
-                    }
-                    .build()
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
             }
 
+            client = OkHttpClient.Builder()
+                .addInterceptor { chain ->
+                    val request = chain.request().newBuilder()
+                        .addHeader("Authorization", "token $token").build()
+                    chain.proceed(request)
+                }
+                .addInterceptor(loggingInterceptor)
+                .build()
+
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(apiURL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
